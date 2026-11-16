@@ -268,15 +268,15 @@ section{position:relative}
 .step .card{grid-column:1;text-align:right;padding-right:10px}
 .step:nth-child(odd of .step) .card{grid-column:2;text-align:left;padding:0 0 0 10px}
 .step .node{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--bg);border:1.5px solid var(--dim);transition:border-color .5s,background .5s}
-.step .node i{position:absolute;inset:1.5px;border-radius:50%;background:var(--gold);transform:scale(0)}
-.step .node .ring{position:absolute;left:-11.5px;top:-11.5px;width:36px;height:36px;max-width:none;max-height:none;overflow:visible;transform:rotate(-90deg)}
-.step .ring circle{fill:none;stroke:var(--gold);stroke-width:1.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
-.step .bdot{position:absolute;top:50%;left:calc(50% - 10px);width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#fff4d8;box-shadow:0 0 10px 2px rgba(232,205,143,.55);opacity:0}
-.step:nth-child(odd of .step) .bdot{left:calc(50% + 10px)}
-.step .branch{position:absolute;top:50%;height:1px;width:clamp(30px,4.5vw,70px);background:var(--gold);transform:scaleX(0)}
+.step .node::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid var(--gold);opacity:0;transform:scale(.4);transition:transform .7s var(--ease),opacity .7s}
+.step.on .node{border-color:var(--gold);background:var(--gold)}
+.step.on .node::after{opacity:.6;transform:scale(1)}
+.step .branch{position:absolute;top:50%;height:1px;width:clamp(30px,4.5vw,70px);background:var(--gold);transform:scaleX(0);transition:transform .8s var(--ease) .1s}
 .step .branch{right:50%;margin-right:10px;transform-origin:right}
 .step:nth-child(odd of .step) .branch{left:50%;right:auto;margin:0 0 0 10px;transform-origin:left}
-.step .card{opacity:.25;transform:translateY(24px)}
+.step.on .branch{transform:scaleX(1)}
+.step .card{opacity:.25;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.step.on .card{opacity:1;transform:none}
 .step .no{font-family:var(--display);font-weight:200;font-size:clamp(48px,5vw,76px);line-height:1;color:var(--gold)}
 .step .tag{display:block;margin:6px 0 4px;font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
 .step h3{margin:0 0 10px;font-family:var(--display);font-weight:400;font-size:clamp(20px,2vw,28px);letter-spacing:.08em;text-transform:uppercase}
@@ -382,7 +382,6 @@ footer{border-top:1px solid var(--line2);padding:56px var(--pad) 34px;background
   .step .card,.step:nth-child(odd of .step) .card{grid-column:1;text-align:left;padding:0}
   .step .node{left:8px;top:58px}
   .step .branch,.step:nth-child(odd of .step) .branch{left:20px;right:auto;margin:0;top:58px;width:20px;transform-origin:left}
-  .step .bdot,.step:nth-child(odd of .step) .bdot{left:20px;top:58px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .foot{grid-template-columns:1fr;text-align:center;justify-items:center}
   .foot nav{justify-content:center}
@@ -725,13 +724,13 @@ footer{border-top:1px solid var(--line2);padding:56px var(--pad) 34px;background
   </div>
   <div class="steps">
     <div class="trunk" aria-hidden="true"><i></i></div>
-    <div class="step"><span class="node"><i></i><svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="17" pathLength="1"/></svg></span><span class="branch"></span><span class="bdot"></span>
+    <div class="step"><span class="node"></span><span class="branch"></span>
       <div class="card"><div class="no">01</div><span class="tag">Raiz</span><h3>Entender o negócio</h3><p>Quem é o seu cliente, como ele procura você na cidade e o que faz ele chamar no WhatsApp.</p></div></div>
-    <div class="step"><span class="node"><i></i><svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="17" pathLength="1"/></svg></span><span class="branch"></span><span class="bdot"></span>
+    <div class="step"><span class="node"></span><span class="branch"></span>
       <div class="card"><div class="no">02</div><span class="tag">Tronco</span><h3>Estrutura e conteúdo</h3><p>Seções que conduzem até o contato, textos claros e a chamada certa em cada ponto da página.</p></div></div>
-    <div class="step"><span class="node"><i></i><svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="17" pathLength="1"/></svg></span><span class="branch"></span><span class="bdot"></span>
+    <div class="step"><span class="node"></span><span class="branch"></span>
       <div class="card"><div class="no">03</div><span class="tag">Galhos</span><h3>Design e movimento</h3><p>Identidade visual própria, animações que prendem a atenção e versão pensada para o celular.</p></div></div>
-    <div class="step"><span class="node"><i></i><svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="17" pathLength="1"/></svg></span><span class="branch"></span><span class="bdot"></span>
+    <div class="step"><span class="node"></span><span class="branch"></span>
       <div class="card"><div class="no">04</div><span class="tag">Copa</span><h3>Testes e entrega</h3><p>Conferência em celular e computador, prints, vídeo de prévia e publicação do site no ar.</p></div></div>
     <img class="crown" src="assets/emblema.webp" alt="" width="1014" height="626" loading="lazy" decoding="async">
   </div>
@@ -1200,22 +1199,10 @@ if (window.gsap && window.ScrollTrigger) {
 
   /* -------- processo: tronco que cresce -------- */
   const fill = $('.trunk i');
-  if (reduce) { gsap.set(fill, { scaleY: 1 }); $$('.step, .crown').forEach(s => s.classList.add('on'));
-    gsap.set('.step .ring circle', { strokeDashoffset: 0 }); gsap.set('.step .node i, .step .branch', { scale: 1 }); gsap.set('.step .card', { opacity: 1, y: 0 }); }
+  if (reduce) { gsap.set(fill, { scaleY: 1 }); $$('.step, .crown').forEach(s => s.classList.add('on')); }
   else {
     gsap.to(fill, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.steps', start: 'top 62%', end: 'bottom 62%', scrub: .5 } });
-    // linha chega na bolinha -> anel se desenha -> anel fecha e o ponto corre pelo galho até o título
-    $$('.step').forEach(s => {
-      const node = $('.node', s), br = $('.branch', s), dot = $('.bdot', s);
-      const side = () => br.getBoundingClientRect().left >= node.getBoundingClientRect().left ? 1 : -1;
-      gsap.timeline({ scrollTrigger: { trigger: node, start: 'center 62%', end: 'center 38%', scrub: .5, invalidateOnRefresh: true } })
-        .fromTo($('.ring circle', s), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .5, ease: 'none' }, 0)
-        .fromTo($('i', node), { scale: 0 }, { scale: 1, duration: .15, ease: 'none' }, .38)
-        .fromTo(dot, { x: 0, opacity: 0 }, { opacity: 1, duration: .04, ease: 'none' }, .5)
-        .fromTo(br, { scaleX: 0 }, { scaleX: 1, duration: .5, ease: 'none' }, .5)
-        .to(dot, { x: () => side() * br.offsetWidth, duration: .5, ease: 'none' }, .5)
-        .fromTo($('.card', s), { opacity: .25, y: 24 }, { opacity: 1, y: 0, duration: .55, ease: 'none' }, .3);
-    });
+    $$('.step').forEach(s => ScrollTrigger.create({ trigger: s, start: 'top 62%', onEnter: () => s.classList.add('on'), onLeaveBack: () => s.classList.remove('on') }));
     ScrollTrigger.create({ trigger: '.crown', start: 'top 80%', onEnter: () => $('.crown').classList.add('on'), onLeaveBack: () => $('.crown').classList.remove('on') });
   }
 
